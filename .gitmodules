@@ -1,0 +1,11 @@
+[submodule "vendor/crashpad"]
+	path = vendor/crashpad
+	url = https://chromium.googlesource.com/crashpad/crashpad
+[submodule "vendor/mini_chromium"]
+	path = vendor/mini_chromium
+	url = https://chromium.googlesource.com/chromium/mini_chromium
+[submodule "vendor/zlib"]
+	path = vendor/zlib
+	url = https://github.com/madler/zlib
+	ignore = dirty
+	

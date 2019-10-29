@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>UnidentifiedDeveloper.Crashpad.vc142</id>
+        <version>0.0</version>
+        <description>Crashpad built for MSVC-14.2</description>
+        <authors>Unidentified Developer</authors>
+    </metadata>
+    <files>
+        <!-- Include files -->
+        <file src="vendor\crashpad\**\*.h"                  target="build\native\crashpad\include" />
+        <file src="vendor\mini_chromium\**\*.h"             target="build\native\mini_chromium\include" />
+        <file src="vendor\zlib\**\*.h"                      target="build\native\zlib\include" />
+
+        <!-- Debug/x64 -->
+        <file src="build/x64/Debug/crashpad_client.lib"     target="lib/native/v142/x64/debug" />
+        <file src="build/x64/Debug/crashpad_compat.lib"     target="lib/native/v142/x64/debug" />
+        <file src="build/x64/Debug/crashpad_handler.com"    target="lib/native/v142/x64/debug" />
+        <file src="build/x64/Debug/crashpad_handler.exe"    target="lib/native/v142/x64/debug" />
+        <file src="build/x64/Debug/crashpad_minidump.lib"   target="lib/native/v142/x64/debug" />
+        <file src="build/x64/Debug/crashpad_snapshot.lib"   target="lib/native/v142/x64/debug" />
+        <file src="build/x64/Debug/crashpad_tools.lib"      target="lib/native/v142/x64/debug" />
+        <file src="build/x64/Debug/crashpad_util.lib"       target="lib/native/v142/x64/debug" />
+        <file src="build/x64/Debug/getopt.lib"              target="lib/native/v142/x64/debug" />
+        <file src="build/x64/Debug/mini_chromium.lib"       target="lib/native/v142/x64/debug" />
+
+        <!-- Debug/x86 -->
+        <file src="build/x86/Debug/crashpad_client.lib"     target="lib/native/v142/x86/debug" />
+        <file src="build/x86/Debug/crashpad_compat.lib"     target="lib/native/v142/x86/debug" />
+        <file src="build/x86/Debug/crashpad_handler.com"    target="lib/native/v142/x86/debug" />
+        <file src="build/x86/Debug/crashpad_handler.exe"    target="lib/native/v142/x86/debug" />
+        <file src="build/x86/Debug/crashpad_minidump.lib"   target="lib/native/v142/x86/debug" />
+        <file src="build/x86/Debug/crashpad_snapshot.lib"   target="lib/native/v142/x86/debug" />
+        <file src="build/x86/Debug/crashpad_tools.lib"      target="lib/native/v142/x86/debug" />
+        <file src="build/x86/Debug/crashpad_util.lib"       target="lib/native/v142/x86/debug" />
+        <file src="build/x86/Debug/getopt.lib"              target="lib/native/v142/x86/debug" />
+        <file src="build/x86/Debug/mini_chromium.lib"       target="lib/native/v142/x86/debug" />
+
+        <!-- Release/x64 -->
+        <file src="build/x64/Release/crashpad_client.lib"   target="lib/native/v142/x64/release" />
+        <file src="build/x64/Release/crashpad_compat.lib"   target="lib/native/v142/x64/release" />
+        <file src="build/x64/Release/crashpad_handler.com"  target="lib/native/v142/x64/release" />
+        <file src="build/x64/Release/crashpad_handler.exe"  target="lib/native/v142/x64/release" />
+        <file src="build/x64/Release/crashpad_minidump.lib" target="lib/native/v142/x64/release" />
+        <file src="build/x64/Release/crashpad_snapshot.lib" target="lib/native/v142/x64/release" />
+        <file src="build/x64/Release/crashpad_tools.lib"    target="lib/native/v142/x64/release" />
+        <file src="build/x64/Release/crashpad_util.lib"     target="lib/native/v142/x64/release" />
+        <file src="build/x64/Release/getopt.lib"            target="lib/native/v142/x64/release" />
+        <file src="build/x64/Release/mini_chromium.lib"     target="lib/native/v142/x64/release" />
+
+        <!-- Release/x86 -->
+        <file src="build/x86/Release/crashpad_client.lib"   target="lib/native/v142/x86/release" />
+        <file src="build/x86/Release/crashpad_compat.lib"   target="lib/native/v142/x86/release" />
+        <file src="build/x86/Release/crashpad_handler.com"  target="lib/native/v142/x86/release" />
+        <file src="build/x86/Release/crashpad_handler.exe"  target="lib/native/v142/x86/release" />
+        <file src="build/x86/Release/crashpad_minidump.lib" target="lib/native/v142/x86/release" />
+        <file src="build/x86/Release/crashpad_snapshot.lib" target="lib/native/v142/x86/release" />
+        <file src="build/x86/Release/crashpad_tools.lib"    target="lib/native/v142/x86/release" />
+        <file src="build/x86/Release/crashpad_util.lib"     target="lib/native/v142/x86/release" />
+        <file src="build/x86/Release/getopt.lib"            target="lib/native/v142/x86/release" />
+        <file src="build/x86/Release/mini_chromium.lib"     target="lib/native/v142/x86/release" />
+    </files>
+</package>
