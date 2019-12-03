@@ -2,6 +2,18 @@ cmake_minimum_required(VERSION 3.14)
 
 project(padcr)
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
+if(MSVC)
+    include(MSVCRuntime)
+
+    if(NOT DEFINED MSVC_RUNTIME)
+        set(MSVC_RUNTIME "static")
+    endif()
+
+    configure_msvc_runtime()
+endif()
+
 enable_language(ASM_MASM)
 
 add_subdirectory(vendor/zlib)
