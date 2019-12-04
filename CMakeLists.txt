@@ -12,6 +12,7 @@ if(MSVC)
     endif()
 
     configure_msvc_runtime()
+    add_compile_options(/wd4530)
 endif()
 
 enable_language(ASM_MASM)
@@ -197,7 +198,6 @@ target_link_libraries(
     mini_chromium
     crashpad_compat
     ${ZLIB_LIBRARY}
-
     user32
     version
     winhttp
