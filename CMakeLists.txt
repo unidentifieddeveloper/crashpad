@@ -16,8 +16,6 @@ endif()
 
 enable_language(ASM_MASM)
 
-add_subdirectory(vendor/zlib)
-
 add_library(
     mini_chromium
     STATIC
@@ -185,12 +183,20 @@ target_compile_definitions(
     -DWIN32_LEAN_AND_MEAN
 )
 
+if(NOT DEFINED ZLIB_LIBRARY)
+    message(WARNING "ZLIB_LIBRARY not set")
+endif()
+
+if(NOT DEFINED ZLIB_INCLUDE_DIR)
+    message(WARNING "ZLIB_INCLUDE_DIR not set")
+endif()
+
 target_link_libraries(
     crashpad_util
     PRIVATE
     mini_chromium
     crashpad_compat
-    zlibstatic
+    ${ZLIB_LIBRARY}
 
     user32
     version
@@ -201,8 +207,7 @@ target_include_directories(
     crashpad_util
     PUBLIC
     vendor/crashpad
-    vendor/zlib
-    "$<TARGET_FILE_DIR:zlibstatic>/../"
+    ${ZLIB_INCLUDE_DIR}
 )
 
 add_library(
@@ -347,7 +352,6 @@ target_link_libraries(
     PRIVATE
     mini_chromium
     crashpad_compat
-
     powrprof
 )
 
