@@ -394,6 +394,37 @@ add_custom_command(
         "$<TARGET_FILE_DIR:crashpad_handler>/crashpad_handler.com"
 )
 
+add_executable(
+    generate_dump
+        vendor/crashpad/tools/generate_dump
+)
+
+target_compile_definitions(
+    generate_dump
+    PRIVATE
+    -DNOMINMAX
+    -DUNICODE
+    -DWIN32
+    -DWIN32_LEAN_AND_MEAN
+)
+
+target_include_directories(
+    generate_dump
+    PRIVATE
+    vendor/crashpad
+    vendor/crashpad/compat/win
+    vendor/mini_chromium
+)
+
+target_link_libraries(
+    generate_dump
+    PRIVATE
+    crashpad_minidump
+    crashpad_snapshot
+    crashpad_tools
+    getopt
+)
+
 set_source_files_properties(
     vendor/crashpad/util/misc/capture_context_win.asm
     PROPERTIES
