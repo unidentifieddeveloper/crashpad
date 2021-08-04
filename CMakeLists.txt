@@ -15,7 +15,9 @@ if(MSVC)
     add_compile_options(/wd4530)
 endif()
 
-enable_language(ASM_MASM)
+if(NOT ("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "ARM64"))
+    enable_language(ASM_MASM)
+endif()
 
 include_directories("${CMAKE_SOURCE_DIR}/vendor/include")
 
@@ -123,6 +125,15 @@ target_link_libraries(
     mini_chromium
 )
 
+if(NOT ("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "ARM64"))
+    set(CRASHPAD_UTIL_ASM
+        vendor/crashpad/util/misc/capture_context_win.asm
+        vendor/crashpad/util/win/safe_terminate_process.asm)
+else()
+    set(CRASHPAD_UTIL_ASM
+        vendor/crashpad/util/misc/capture_context_win_arm64.obj)
+endif()
+
 add_library(
     crashpad_util
     STATIC
@@ -177,8 +188,7 @@ add_library(
     vendor/crashpad/util/win/scoped_set_event
     vendor/crashpad/util/win/scoped_local_alloc
     vendor/crashpad/util/win/loader_lock
-    vendor/crashpad/util/misc/capture_context_win.asm
-    vendor/crashpad/util/win/safe_terminate_process.asm
+    ${CRASHPAD_UTIL_ASM}
 )
 
 target_compile_definitions(
