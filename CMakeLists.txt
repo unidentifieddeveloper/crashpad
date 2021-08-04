@@ -17,6 +17,8 @@ endif()
 
 enable_language(ASM_MASM)
 
+include_directories("${CMAKE_SOURCE_DIR}/vendor/include")
+
 add_library(
     mini_chromium
     STATIC
@@ -25,7 +27,7 @@ add_library(
     vendor/mini_chromium/base/files/file_path
     vendor/mini_chromium/base/files/scoped_file
     vendor/mini_chromium/base/process/memory
-    vendor/mini_chromium/base/process/process_metrics_win
+    vendor/mini_chromium/base/memory/page_size_win.cc
     vendor/mini_chromium/base/strings/stringprintf
     vendor/mini_chromium/base/strings/string_number_conversions
     vendor/mini_chromium/base/strings/string_util_win
@@ -34,6 +36,7 @@ add_library(
     vendor/mini_chromium/base/synchronization/lock
     vendor/mini_chromium/base/synchronization/lock_impl_win
     vendor/mini_chromium/base/third_party/icu/icu_utf
+    vendor/mini_chromium/base/scoped_clear_last_error_win
 )
 
 target_compile_definitions(
@@ -128,9 +131,10 @@ add_library(
     vendor/crashpad/util/file/file_reader
     vendor/crashpad/util/file/file_seeker
     vendor/crashpad/util/file/file_writer
+    vendor/crashpad/util/file/file_helper
     vendor/crashpad/util/file/filesystem_win
     vendor/crashpad/util/file/scoped_remove_file
-    vendor/crashpad/util/misc/capture_context_win.asm
+    vendor/crashpad/util/file/directory_reader_win
     vendor/crashpad/util/misc/initialization_state_dcheck
     vendor/crashpad/util/misc/metrics
     vendor/crashpad/util/misc/paths_win
@@ -167,11 +171,14 @@ add_library(
     vendor/crashpad/util/win/ntstatus_logging
     vendor/crashpad/util/win/process_info
     vendor/crashpad/util/win/registration_protocol_win
-    vendor/crashpad/util/win/safe_terminate_process.asm
     vendor/crashpad/util/win/session_end_watcher
     vendor/crashpad/util/win/scoped_handle
     vendor/crashpad/util/win/scoped_process_suspend
     vendor/crashpad/util/win/scoped_set_event
+    vendor/crashpad/util/win/scoped_local_alloc
+    vendor/crashpad/util/win/loader_lock
+    vendor/crashpad/util/misc/capture_context_win.asm
+    vendor/crashpad/util/win/safe_terminate_process.asm
 )
 
 target_compile_definitions(
@@ -439,16 +446,4 @@ target_link_libraries(
     crashpad_snapshot
     crashpad_tools
     getopt
-)
-
-set_source_files_properties(
-    vendor/crashpad/util/misc/capture_context_win.asm
-    PROPERTIES
-    COMPILE_FLAGS "/safeseh"
-)
-
-set_source_files_properties(
-    vendor/crashpad/util/win/safe_terminate_process.asm
-    PROPERTIES
-    COMPILE_FLAGS "/safeseh"
 )
